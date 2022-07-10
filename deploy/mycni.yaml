@@ -85,7 +85,7 @@ spec:
       initContainers:
       - name: install-cni-plugin
         # mycni image
-        image: mycni:v1.0
+        image: mriosalido/k8s-cni-mycni:v1.0
         command:
         - cp
         args:
@@ -96,7 +96,7 @@ spec:
         - name: cni-plugin
           mountPath: /opt/cni/bin
       - name: install-cni
-        image: mycni:v1.0
+        image: mriosalido/k8s-cni-mycni:v1.0
         command:
         - cp
         args:
@@ -110,14 +110,14 @@ spec:
           mountPath: /etc/kube-mycni/
       containers:
       - name: kube-mycni
-        image: mycni:v1.0
+        image: mriosalido/k8s-cni-mycni:v1.0
         command:
         - /mycnid
         args:
         # get cluster cidr from kube-controller-manager
-        - --cluster-cidr=10.244.0.0/16
+        - --cluster-cidr=10.200.0.0/16
         - --node=$(NODE_NAME)
-        - --enable-iptables
+        #- --enable-iptables
         resources:
           requests:
             cpu: "100m"

@@ -8,7 +8,7 @@ build:
 
 VERSION=v1.0
 docker-build: build
-	docker build -t mycni:$(VERSION) .
+	podman build -t mriosalido/k8s-cni-mycni:$(VERSION) .
 
 deploy:
 	kubectl apply -f deploy/mycni.yaml
